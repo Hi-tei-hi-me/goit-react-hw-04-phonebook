@@ -8,12 +8,8 @@ import { ContactList } from './Contacts/ListOfContacts';
 import { Filter } from './SearchForm/SearchForm';
 
 export const App = () => {
-  const [contacts, setContacts] = useState(() => {
-    if (window.localStorage.getItem('contacts')) {
-      return JSON.parse(window.localStorage.getItem('contacts'));
-    }
-    return [];
-  });
+  const [contacts, setContacts] = useState(() => JSON.parse(window.localStorage.getItem('contacts')) ??
+[]);
   const [filter, applyFilter] = useState('');
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
